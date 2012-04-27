@@ -1,0 +1,832 @@
+<html lang="en">
+	<head>
+	    <meta charset="utf-8" />
+	    <meta name="viewport" content="width=1024" />
+	    <meta name="apple-mobile-web-app-capable" content="yes" />
+	    <title>welcome to web development ...again (a talk by Brian Wigfield)</title>
+
+	    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+	    <link href="css/style.css" rel="stylesheet" type="text/css" />
+	    <link href="css/starburst.css" rel="stylesheet" type="text/css" />
+	 </head>
+	 <body onload="prettyPrint()">
+
+	 	<div id="impress">
+		    <div id="sponsors" class="step slide" data-x="-2000" data-y="-1500">
+		    	<img src="images/SponsorSlide.png"></img>
+		    </div>
+
+		    <div id="bored" class="step slide" data-x="-1000" data-y="-1500">
+		        <h1 style="text-align:center;">welcome to web development</h1><h4 style="text-align:center;">...again</h4>
+
+		        <h4>Brian Wigfield [AdventureTech]</h4>
+		    </div>
+
+		    <div id="warning" class="step slide" data-x="0" data-y="-1500">
+		        <p>If you've had your head down the last few years... 
+		       		<b id="slippedBy">new web development techniques</b> 
+		       		<br/>
+		       		might have slipped right by you.
+		       	</p>
+		    </div>
+
+		    <div id="topics" class="step" data-x="850" data-y="3000" data-rotate="90" data-scale="5">
+		    	<h4>Topics</h4>
+		        <ul>
+					<li>transcompilers</li>
+		        	<li>core frameworks</li>
+					<li>CSS/UI frameworks</li>
+					<li>client templating</li>
+					<li>MV* client frameworks</li>
+					<li>testing/dev tools</li>
+					<li>mobile specific</li>
+					<li>misc</li>
+		        </ul>
+		    </div>
+
+		    <div id="transcompilers" class="step" data-x="2500" data-y="-500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>transcompilers</h2>
+		    </div>
+
+		    <div id="coffescript" class="step" data-x="1500" data-y="-500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>CoffeeScript</h4>
+		        <pre class="prettyprint"><code>begin = (session) -> session.started = true;
+sessions = [{name: 'one', started: true}, { name: 'two', started: false}]
+begin session for session in sessions when session.started is false</code></pre>
+		    </div>
+
+		    <div id="sass" class="step" data-x="1500" data-y="-1500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>SASS</h4>
+		        <pre class="prettyprint"><code>&lt;div id=&quot;conference&quot;&gt;&lt;h2&gt;Sessions&lt;/h2&gt;&lt;ul&gt;&lt;/ul&gt;&lt;/div&gt;</code></pre>
+		        <pre class="prettyprint lang-css"><code>$baseColor: blue;
+@mixin plain-list ($margin: 20px) {
+	li {
+		margin-right: $margin;
+		list-style-type: none;	}}
+.otherThingsWithBorder {
+	border: 1px solid $baseColor;}
+#conference {
+	@extend .otherThingsWithBorder;
+	ul {
+		@include plain-list(10px);
+		color: lighten($baseColor, 10%);}}
+
+&lt;!--output --&gt;
+.otherThingsWithBorder, #conference {
+  border: 1px solid blue; }
+#conference ul {
+  color: #3333ff; }
+#conference ul li {
+    margin-right: 10px; 
+    list-style-type: none; }
+</code></pre>
+		    </div>
+
+		    <div id="less" class="step" data-x="1500" data-y="-2500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>LESS</h4>
+		    </div>
+
+		    <div id="core-frameworks" class="step" data-x="2500" data-y="-1500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>core frameworks</h2>
+		    </div>
+
+		    <div id="jquery" class="step" data-x="1500" data-y="-1500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>jQuery</h4>
+				<pre class="prettyprint"><code>&lt;div id=&quot;app&quot;&gt;
+	&lt;label&gt;Where are we?&lt;/label&gt;
+	&lt;span style=&quot;display:none;&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	$('#app').find('label').hover(
+		function() {$(this).siblings('span').fadeIn()},
+		function() {$(this).siblings('span').fadeOut()}
+	).siblings('span').html('KCDC 2012');
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="jquery-cs" class="step" data-x="1500" data-y="-1500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>jQuery - CS</h4>
+				<pre class="prettyprint"><code>&lt;div id=&quot;app&quot;&gt;
+	&lt;label&gt;Where are we?&lt;/label&gt;
+	&lt;span style=&quot;display:none;&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	$('#app').find('label').hover(
+		-> $(@).siblings('span').fadeIn(),
+		-> $(@).siblings('span').fadeOut()
+	).siblings('span').html('KCDC 2012')
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="mootools" class="step" data-x="1500" data-y="-2500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>MooTools</h4>
+				<pre class="prettyprint"><code>&lt;div id=&quot;app&quot;&gt;
+	&lt;label&gt;Where are we?&lt;/label&gt;
+	&lt;span style=&quot;display:none;&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	var label = $$('#app label');
+	label.getNext('span').set('html', 'KCDC 2012');
+	label.addEvents({
+		mouseover: function() {
+			//custom code
+			//label.getNext('span').reveal();
+		},
+		mouseout: function() {
+			//custom code
+			//label.getNext('span').dissolve();
+		}
+	});
+&lt;/script&gt;
+</code></pre>
+		    </div>
+
+		    <div id="mootools-cs" class="step" data-x="1500" data-y="-2500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>MooTools - CS</h4>
+				<pre class="prettyprint"><code>&lt;div id=&quot;app&quot;&gt;
+	&lt;label&gt;Where are we?&lt;/label&gt;
+	&lt;span style=&quot;display:none;&quot;&gt;&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	label = $$('#app label')
+	label.getNext('span').set 'html', 'KCDC 2012'
+	label.addEvents
+		mouseover: ->
+			#custom code
+			#label.getNext('span').reveal()
+		mouseout: ->
+			#custom code
+			#label.getNext('span').dissolve()
+&lt;/script&gt;
+</code></pre>
+		    </div>
+
+			<div id="mootools2" class="step" data-x="1500" data-y="-3500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>MooTools (continued)</h4>
+				<pre class="prettyprint"><code>&lt;script&gt;
+	var Person = new Class({
+		initialize: function(name) {
+			this.name = name;
+		}
+	});
+	var Speaker = new Class({
+		Implements: Person,
+		Intro: function(talk) {
+			return &quot;My name is &quot; + this.name + &quot; and I will be speaking on &quot; + talk;
+		}
+	})
+	var brian = new Speaker('Brian Wigfield');
+	console.log(brian.Intro('web development'));
+&lt;/script&gt;</code></pre>
+		    </div>
+
+			<div id="mootools2-cs" class="step" data-x="1500" data-y="-3500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>MooTools (continued) - CS</h4>
+				<pre class="prettyprint"><code>&lt;script&gt;
+	Person = new Class
+		initialize: (name) ->
+			this.name = name
+	Speaker = new Class
+		Implements: Person
+		Intro: (talk) ->
+			return "My name is #{this.name} and I will be speaking on #{talk}"
+
+	brian = new Speaker 'Brian Wigfield'
+	console.log(brian.Intro('web development'))
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="zepto" class="step" data-x="1500" data-y="-4500" data-z="-8000" data-rotate="270" data-scale="1">
+		        <h4>Zepto.js</h4>
+		    </div>
+
+		    <div id="sizzle" class="step" data-x="1500" data-y="-5500" data-z="-9000" data-rotate="270" data-scale="1">
+		        <h4>Sizzle</h4>
+		    </div>
+
+		    <div id="underscore" class="step" data-x="1500" data-y="-6500" data-z="-10000" data-rotate="270" data-scale="1">
+		        <h4>Underscore.js</h4>
+		        <pre class="prettyprint"><code>
+_.each([&quot;session 1&quot;, &quot;session2&quot;, &quot;session 3&quot;], function(session) {
+	beginSession(session);
+});
+
+var taxed = _.map([10,15,20], function(amount) {
+	return amount * 1.08;
+});
+
+var evens = _.filter([1, 2, 3, 4, 5, 6], function(num) { 
+	return num % 2 == 0; 
+});
+
+var anyBrian = _.any([&quot;brian&quot;,&quot;joe&quot;,&quot;bob&quot;], function(who) {
+	return who === &quot;brian&quot;;
+});
+
+var speakers = _.groupBy([{name: 'brian', speaker: true}, {name: 'bob', speaker: false}], 'speaker');
+
+var person = {name: 'brian'};
+person = _.defaults(person, {speaker: false});
+var speaker = _.extend(person, {speaker: true});
+		        </code></pre>
+		    </div>
+
+		    <div id="underscore-cs" class="step" data-x="1500" data-y="-6500" data-z="-10000" data-rotate="270" data-scale="1">
+		        <h4>Underscore.js - CS</h4>
+		        <pre class="prettyprint"><code>
+_.each ["session 1", "session2", "session 3"], (session) ->
+	beginSession session
+
+taxed = _.map [10,15,20], (amount) ->
+	amount * 1.08
+
+evens = _.filter [1, 2, 3, 4, 5, 6], (num) -> 
+	num % 2 == 0
+
+anyBrian = _.any ["brian", "joe", "bob"], (who) ->
+	who == "brian"
+
+speakers = _.groupBy [{name: 'brian', speaker: true}, {name: 'bob', speaker: false}], 'speaker'
+
+person = name: 'brian'
+person = _.defaults person, speaker: false
+speaker = _.extend person, speaker: true
+		        </code></pre>
+		    </div>
+
+		    <div id="css-ui" class="step" data-x="2500" data-y="-2500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>CSS/UI Frameworks</h2>
+		    </div>
+
+		    <div id="cssreset" class="step" data-x="1500" data-y="-2500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>CSS Rests/Normalizer</h4>
+
+		        <ol>
+		        	<li><a href="http://www.cssreset.com/">http://www.cssreset.com/</a></li>
+		        	<li><a href="http://necolas.github.com/normalize.css/">http://necolas.github.com/normalize.css/</a></li>
+		        </ol>
+		    </div>
+
+		    <div id="compass" class="step" data-x="1500" data-y="-3500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>Compass</h4>
+		        <pre class="prettyprint lang-css"><code>@import "compass/reset";
+@import "compass/css3/border-radius";
+@import "compass/css3/opacity";
+
+#body {
+	div {
+		@include border-radius(4px);
+		@include opacity(.5);
+	}
+}
+
+&lt;!--output --&gt;
+
+#body div {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px;
+  filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);
+  opacity: 0.5;
+}</code></pre>
+		    </div>
+
+		    <div id="blueprint" class="step" data-x="1500" data-y="-4500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>BlueprintCSS</h4>
+		        <img src="images/blueprint.png" style="height: 500px;"></img>
+		    </div>
+
+		    <div id="grid960" class="step" data-x="1500" data-y="-5500" data-z="-8000" data-rotate="270" data-scale="1">
+		        <h4>Grid960</h4>
+		        <pre class="prettyprint"><code>&lt;div class=&quot;container_12&quot;&gt;
+  &lt;h2&gt;
+    12 Column Grid
+  &lt;/h2&gt;
+  &lt;div class=&quot;grid_12&quot;&gt;
+    &lt;p&gt;
+      940
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;!-- end .grid_12 --&gt;
+  &lt;div class=&quot;clear&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;grid_1&quot;&gt;
+    &lt;p&gt;
+      60
+    &lt;/p&gt;
+  &lt;/div&gt;
+  &lt;!-- end .grid_1 --&gt;
+  &lt;div class=&quot;grid_11&quot;&gt;
+    &lt;p&gt;
+      860
+    &lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+		    </div>
+
+		    <div id="bootstrap" class="step" data-x="1500" data-y="-6500" data-z="-9000" data-rotate="270" data-scale="1">
+		        <h4>Twitter Bootstrap</h4>
+		    </div>
+
+		    <div id="jqueryui" class="step" data-x="1500" data-y="-7500" data-z="-10000" data-rotate="270" data-scale="1">
+		        <h4>jQueryUI</h4>
+		    </div>
+
+		    <div id="client-templating" class="step" data-x="2500" data-y="-3500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>Client templating</h2>
+		    </div>
+
+		    <div id="mustache" class="step" data-x="1500" data-y="-3500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>Mustache.js/Hogan.js</h4>
+		        <pre class="prettyprint"><code>&lt;script id=&quot;template&quot; type=&quot;text/tempalte&quot;&gt;
+	&lt;h2&gt;Sessions&lt;/h2&gt;
+	&lt;ul&gt;
+	{{#sessions}}
+		&lt;li&gt;{{name}}&lt;/li&gt;
+	{{/sessions}}
+	&lt;/ul&gt;
+&lt;/script&gt;
+
+&lt;script&gt;
+	var template = Hogan.compile($('#template').text());
+	$('#app').html(
+		template.render({sessions : [
+			{name : 'one'}, 
+			{name : 'two'}
+		]})
+	);
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="handlebars" class="step" data-x="1500" data-y="-4500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>Handlebars.js</h4>
+		        <pre class="prettyprint"><code>&lt;script id=&quot;template&quot; type=&quot;text/template&quot;&gt;
+	&lt;ul&gt;
+	{{#webOnly sessions}}
+		{{> session}}
+	{{/webOnly}}
+	&lt;/ul&gt;
+&lt;/script&gt;
+&lt;script&gt;
+	Handlebars.registerHelper('webOnly', function(sessions, options) {
+		var ret = ''
+		_.forEach(filtered, function(session) {
+			if (session.category === 'web')
+				ret = ret + options.fn(session)});
+		return ret;
+	});
+
+	var template = Handlebars.compile($('#template').text());
+	$('#app').html(
+		template({sessions : [
+			{name : 'one', category: 'web'}, 
+			{name : 'two', category: 'desktop'}
+		]})
+	);
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="underscore-templates" class="step" data-x="1500" data-y="-5500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>Underscore.js</h4>
+		        <pre class="prettyprint"><code>var compiled = _.template("Speaker Name: <%= speaker %>");
+compiled({speaker : 'brian'});</code></pre>
+		    </div>
+
+		    <div id="mv*" class="step" data-x="2500" data-y="-4500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>MV* client frameworks</h2>
+		    </div>
+
+		    <div id="knockout" class="step" data-x="1500" data-y="-4500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>Knockout.js</h4>
+		        <pre class="prettyprint"><code>&lt;div id=&quot;app&quot;&gt;
+	&lt;div data-bind=&quot;foreach: speakers&quot;&gt;
+		&lt;input data-bind=&quot;value: name, attr: {tooltip: name}&quot; /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	var viewModel = {
+		speakers: ko.observableArray([
+			{name: 'brian'}, 
+			{name: 'joe'}
+		])
+	};
+	ko.applyBindings(viewModel);
+	viewModel.speakers.push({name: 'bill'});
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="knockout-cs" class="step" data-x="1500" data-y="-4500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>Knockout.js - CS</h4>
+		        <pre class="prettyprint"><code>&lt;div id=&quot;app&quot;&gt;
+	&lt;div data-bind=&quot;foreach: speakers&quot;&gt;
+		&lt;input data-bind=&quot;value: name, attr: {tooltip: name}&quot; /&gt;
+	&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+	viewModel =
+		speakers: ko.observableArray [
+			{name: 'brian'}, 
+			{name: 'joe'}
+		]
+	ko.applyBindings viewModel
+	viewModel.speakers.push name: 'bill'
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="backbone" class="step" data-x="1500" data-y="-5500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>Backbone.js</h4>
+		        <pre class="prettyprint"><code>var Session = Backbone.Model.extend({
+	defaults: {category: 'n/a'}
+});
+var Sessions = Backbone.Collection.extend({
+	model: Session
+});
+var SessionList = Backbone.View.extend({
+	el: '#app',
+	initialize: function () {
+		this.tmpl = _.template('&lt;% _.each(sessions,function(session) { %&gt;&lt;div&gt;&lt;input value=&quot;&lt;%=session.get("name")%&gt;&quot;/&gt;&lt;/div&gt;&lt;%});%&gt;');
+	},
+	render: function() {
+		$(this.el).html(
+			this.tmpl({sessions: this.collection}));
+	}
+});
+new SessionList({collection: new Sessions([
+		{name: 'one', category: 'web'}, 
+		{name: 'two'}])}).render();</code></pre>
+		    </div>
+
+		    <div id="backbone-cs" class="step" data-x="1500" data-y="-5500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>Backbone.js - CS</h4>
+		        <pre class="prettyprint"><code>Session = Backbone.Model.extend
+	defaults: {category: 'n/a'}
+Sessions = Backbone.Collection.extend
+	model: Session
+SessionList = Backbone.View.extend
+	el: '#app'
+	initialize: ->
+		@.tmpl = _.template '&lt;% _.each(sessions,function(session) { %&gt;&lt;div&gt;&lt;input value=&quot;&lt;%=session.get("name")%&gt;&quot;/&gt;&lt;/div&gt;&lt;%});%&gt;'
+	render: ->
+		$(@el).html(this.tmpl({sessions: this.collection}))
+
+new SessionList({collection: new Sessions([
+		{name: 'one', category: 'web'}, 
+		{name: 'two'}])}).render()</code></pre>
+		    </div>
+
+		    <div id="sammy" class="step" data-x="1500" data-y="-6500" data-z="-7000" data-rotate="270" data-scale="1">
+		    	<h4>Sammy.js</h4>
+		    	<pre class="prettyprint"><code>&lt;div id="app"&gt;&lt;/div&gt;
+&lt;script type=&quot;text/template&quot; id=&quot;speakersTmpl&quot;&gt;
+	&lt;ul&gt;
+		&lt;% for(var i = 0; i &lt; speakers.length; i++) {  %&gt;
+		&lt;li class=&quot;speakerName&quot;&gt;&lt;%= speakers[i] %&gt;&lt;/li&gt;
+		&lt;% } %&gt;
+	&lt;/ul&gt;
+&lt;/script&gt;
+&lt;script&gt;
+	var kcdc = Sammy(&#39;#app&#39;, function() {
+		this.use(&#39;Template&#39;);
+		this.get(&#39;#/init&#39;, function() {
+			this.app.swap(&#39;&lt;a href=&quot;#/list&quot;&gt;Show&lt;/a&gt;&#39;);
+		});
+		this.get(&#39;#/speakers&#39;, function() {
+			this.app.swap(
+				this.template(
+					$(&#39;#speakersTmpl&#39;).html(), 
+					{speakers: [&quot;brian&quot;, &quot;joe&quot;]}
+				)
+			);
+		});
+	})
+	kcdc.run(&#39;#/init&#39;);
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="sammy-cs" class="step" data-x="1500" data-y="-6500" data-z="-7000" data-rotate="270" data-scale="1">
+		    	<h4>Sammy.js - CS</h4>
+		    	<pre class="prettyprint"><code>&lt;div id="app"&gt;&lt;/div&gt;
+&lt;script type=&quot;text/template&quot; id=&quot;speakersTmpl&quot;&gt;
+	&lt;ul&gt;
+		&lt;% for(var i = 0; i &lt; speakers.length; i++) {  %&gt;
+		&lt;li class=&quot;speakerName&quot;&gt;&lt;%= speakers[i] %&gt;&lt;/li&gt;
+		&lt;% } %&gt;
+	&lt;/ul&gt;
+&lt;/script&gt;
+&lt;script&gt;
+	kcdc = Sammy '#app', ->
+		@.use 'Template'
+		@.get '#/init', ->
+			@.app.swap '<a href="#/speakers">Get Speakers</a>'
+		@.get '#/speakers', ->
+			@.app.swap(
+				this.template(
+					$(&#39;#speakersTmpl&#39;).html(), 
+					{speakers: [&quot;brian&quot;, &quot;joe&quot;]}
+				)
+
+	kcdc.run '#/init'
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="ember" class="step" data-x="1500" data-y="-7500" data-z="-8000" data-rotate="270" data-scale="1">
+		    	<h4>Ember.js</h4>
+		    	<pre class="prettyprint"><code>&lt;script type=&quot;text/x-handlebars&quot; data-template-name=&quot;appTmpl&quot;&gt;
+	{{KCDC}}
+	&lt;ul&gt;
+	  {{#each speakers}}
+	    &lt;li&gt;{{name}}&lt;/li&gt;
+	  {{/each}}
+	&lt;/ul&gt;
+&lt;/script&gt;
+&lt;script&gt;
+var App = Ember.Application.create({rootElement: '#app'});
+App.Conference = Ember.Object.create({name: 'KCDC'});
+App.SpeakerView = Ember.View.extend({
+	templateName: 'appTmpl',
+	speakerBinding: 'App.Speaker.name',
+	speakers: [ 
+		{ name: 'brian' },
+		{ name: 'joe' } ]
+});
+
+App.SpeakerView.create().appendTo('body');
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="ember-cs" class="step" data-x="1500" data-y="-7500" data-z="-8000" data-rotate="270" data-scale="1">
+		    	<h4>Ember.js - CS</h4>
+		    	<pre class="prettyprint"><code>&lt;script type=&quot;text/x-handlebars&quot; data-template-name=&quot;appTmpl&quot;&gt;
+	{{KCDC}}
+	&lt;ul&gt;
+	  {{#each speakers}}
+	    &lt;li&gt;{{name}}&lt;/li&gt;
+	  {{/each}}
+	&lt;/ul&gt;
+&lt;/script&gt;
+&lt;script&gt;
+App = Ember.Application.create rootElement: '#app'
+App.Conference = Ember.Object.create name: 'KCDC'
+App.SpeakerView = Ember.View.extend
+	templateName: 'appTmpl'
+	speakerBinding: 'App.Speaker.name'
+	speakers: [ 
+		{ name: 'brian' },
+		{ name: 'joe' } ]
+
+App.SpeakerView.create().appendTo 'body'
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="testing-dev" class="step" data-x="2500" data-y="-5500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>testing/dev tools</h2>
+		    </div>
+
+		    <div id="jsfiddle" class="step" data-x="1500" data-y="-5500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>jsFiddle.net/jsBin.com</h4>
+		        <img src="images/jsfiddle.png" height="500px"></img>
+		    </div>
+
+		    <div id="jasmine" class="step" data-x="1500" data-y="-6500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>Jasmine</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	var calculator = {
+		add : function(p1, p2) {return p1 + p2;}
+		sub : function(p1, p2) {return p1 - p2;}
+	};
+	describe("A calculator", function() {
+	  it("should be able to add numbers correctly", function() {
+	    expect(calculator.add(2,2)).toEqual(4);
+	  });
+	  it("should be able to subtract numbers correctly", function() {
+	    expect(calculator.sub(2,1)).toEqual(1);
+	  });
+	});
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="jasmine-cs" class="step" data-x="1500" data-y="-6500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>Jasmine - CS</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	calculator =
+		add : (p1, p2) -> p1 + p2
+		sub : (p1, p2) -> p1 - p2
+	describe "A calculator", ->
+	  it "should be able to add numbers correctly", ->
+	    expect(calculator.add(2,2)).toEqual 4
+	  it "should be able to subtract numbers correctly", ->
+	    expect(calculator.sub(2,1)).toEqual 1
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="qunit" class="step" data-x="1500" data-y="-7500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>QUnit</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	var calculator = {
+		add : function(p1, p2) {return p1 + p2;}
+		sub : function(p1, p2) {return p1 - p2;}
+	};
+	module("Calculator");
+	test("addition", function() {
+		equal(calculator.add(2,2), 4);
+	});
+	test("subtraction", function() {
+		equal(calculator.subtract(2,1), 1);
+	});
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="qunit-cs" class="step" data-x="1500" data-y="-7500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>QUnit - CS</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	calculator =
+		add : (p1, p2) -> p1 + p2
+		sub : (p1, p2) -> p1 - p2
+	module "Calculator"
+	test "addition", ->
+		equal calculator.add(2,2), 4
+	test "subtraction", ->
+		equal calculator.subtract(2,1), 1
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="mocha" class="step" data-x="1500" data-y="-8500" data-z="-8000" data-rotate="270" data-scale="1">
+		        <h4>Mocha</h4>
+		    </div>
+
+		    <div id="sinon" class="step" data-x="1500" data-y="-9500" data-z="-9000" data-rotate="270" data-scale="1">
+		        <h4>Sinon.js</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	var calculator = { add: function(p1, p2) {}};
+	sinon.stub(calculator, 'add', function() {return 4;});
+	calculator.add.restore();
+
+	var mock = sinon.mock(calculator);
+	mock.expects('add').once();
+	mock.verify();
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="sinon-cs" class="step" data-x="1500" data-y="-9500" data-z="-9000" data-rotate="270" data-scale="1">
+		        <h4>Sinon.js - CS</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	calculator = add: (p1, p2) -> {}
+	sinon.stub calculator, 'add', -> 4
+	calculator.add.restore()
+
+	mock = sinon.mock calculator
+	mock.expects('add').once()
+	mock.verify()
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="mobile-specific" class="step" data-x="2500" data-y="-6500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>Mobile specific</h2>
+		    </div>
+
+		    <div id="mediaqueries" class="step" data-x="1500" data-y="-6500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>CSS Media Queries/Respond.js</h4>
+		        <pre class="prettyprint"><code>
+&lt;link rel="stylesheet" type="text/css" media="only screen and (max-device-width: 480px)" href="small-device.css" /&gt;
+
+@media only screen and (max-device-width: 480px) {
+	styles...
+}
+		    </div>
+
+		    <div id="touchevents" class="step" data-x="1500" data-y="-7500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>jQueryUI Touch Punch/hammer.js</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	var hammer = new Hammer(document.getElementById('app'));
+	hammer.ondoubletap = function(e) {alert('double tap!')};
+
+	$('#app').hammer().bind('doubletap', function(e) {
+		alert('double tap!');
+	});
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="jquery-mobile" class="step" data-x="1500" data-y="-8500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>jQuery Mobile</h4>
+		        <img src="images/jquery-mobile.png"></img>
+		    </div>
+
+		    <div id="dojo-mobile" class="step" data-x="1500" data-y="-9500" data-z="-8000" data-rotate="270" data-scale="1">
+		        <h4>Dojo Mobile</h4>
+		    </div>
+
+		    <div id="misc" class="step" data-x="2500" data-y="-7500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h2>misc</h2>
+		    </div>
+
+		    <div id="modernizr" class="step" data-x="1500" data-y="-7500" data-z="-5000" data-rotate="270" data-scale="1">
+		        <h4>Modernizr/YepNope</h4>
+		        <pre class="prettyprint"><code>&lt;script&gt;
+	Modernizr.load([
+			test: Modernizer.websockets,
+			nope: 'websocket-pollyfill.js',
+			yep: 'adapter.js',
+			both: 'app.js',
+			complete: function () {
+				app.init();
+			}
+		]);
+&lt;/script&gt;</code></pre>
+		    </div>
+
+		    <div id="labjs" class="step" data-x="1500" data-y="-8500" data-z="-6000" data-rotate="270" data-scale="1">
+		        <h4>LABjs</h4>
+		        <pre class="prettyprint"><code>&lt;script src=&quot;scripts/jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;local/myapp_that_needs_jquery.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+	$(function() {
+		myapp.init();
+	})
+&lt;/script&gt;
+
+&lt;script src=&quot;scripts/LAB.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+	$LAB
+	.script('/scripts/jquery.js').wait()
+	.script('/scripts/myapp_that_needs_jquery.js').wait(function() {
+		myapp.init();
+	});
+&lt;/script&gt;
+</code></pre>
+		    </div>
+
+		    <div id="require" class="step" data-x="1500" data-y="-9500" data-z="-7000" data-rotate="270" data-scale="1">
+		        <h4>Require.js</h4>
+		        <pre class="prettyprint"><code>&lt;script src=&quot;scripts/require.js&quot; type=&quot;text/javascript&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+require([&quot;scripts/jquery-1.7.1.min&quot;, &quot;scripts/mootools&quot;], function() {
+    //do your thing
+});
+&lt;/script&gt;
+
+&lt;script&gt;
+define(&quot;app&quot;,[&quot;scripts/speakers&quot;, &quot;scripts/sessions&quot;], function(speakers, sessions) {
+	var speakerList = speakers.getSpeakers();
+	var sessionList = sessions.getSessions();
+});
+&lt;/script&gt;
+!--scripts/session.js
+define(function() {
+	return { getSessions: function() {return ['one', 'two'];}};
+});
+!--scripts/speakers.js
+define(function() {
+	return { getSpeakers: function() {return ['brian', 'joe'];}};
+});</code></pre>
+		    </div>
+
+		    <div id="raphael" class="step" data-x="1500" data-y="-10500" data-z="-8000" data-rotate="270" data-scale="1">
+		        <h4>Raphael.js</h4>
+		        <iframe src="http://raphaeljs.com/polar-clock.html" style="height:550;width:500px; border:none;"></iframe>
+		    </div>
+
+		    <div id="charts" class="step" data-x="1500" data-y="-12500" data-z="-9000" data-rotate="270" data-scale="1">
+		        <h4>Google charts/d3.js/gRaphael</h4>
+		        <img src="images/charts.png" style="height:500px;"></img>
+		    </div>
+
+		    <div id="google-fonts" class="step" data-x="1500" data-y="-13500" data-z="-10000" data-rotate="270" data-scale="1">
+		        <h4>Google Fonts</h4>
+		    </div>
+
+		    <div id="docco" class="step" data-x="1500" data-y="-14500" data-z="-11000" data-rotate="270" data-scale="1">
+		        <h4>DocumentJS/Docco</h4>
+		        <img src="images/docco.png" style="height:500px;"></img>
+		    </div>
+
+		    <div id="impress" class="step" data-x="1500" data-y="-15500" data-z="-12000" data-rotate="270" data-scale="1">
+		        <h4>Impress.js</h4>
+		    </div>
+
+		    <div id="heatmap" class="step" data-x="1500" data-y="-16500" data-z="-13000" data-rotate="270" data-scale="1">
+		        <h4>Heatmap.js</h4>
+		        <img src="images/heatmap.png" style="height:500px;"></img>
+		    </div>
+
+		    <div id="thanks" class="step" data-x="2500" data-y="-17500" data-z="2000" data-scale="1">
+		        <h2>thanks for not walking out</h2>
+		        <h4>Brian Wigfield [AdventureTech]</h4>
+		        <h4>@hermit4hire</h4>
+		        <h4>http://www.gingerrant.com</h4>
+		    </div>
+
+	 	</div>
+
+		<script src="scripts/impress.js"></script>
+		<script>impress().init();</script>
+		<script src="scripts/prettify.js"></script>
+		<script src="scripts/lang-css.js"></script>
+	 </body>
+ </html>

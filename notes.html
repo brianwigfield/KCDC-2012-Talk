@@ -1,0 +1,204 @@
+<html>
+    <head>
+        <title>Notes</title>
+    </head>
+    <body>
+        <p>
+            <h2>Intro</h2>
+            It's no longer enough to only know html & css basics and how to write javascript onclick actions.
+            To build rich interactive web applications today you need to learn how to create structure, maintainable, and testable client side applications. As the complexity of web apps grows, writing client side code should become a first class citizen in your software development, not just something you have to sling together to get your server software to render on a screen.
+
+            Client side development has exploded in the last several years, and its very fast paced and innovative area. Un-like server technologies which sometimes manage to cross pollinate, its a arena where developers from all platforms and languages work on the same problems together which is producing great results. 
+
+            When it came to choosing what to include on the list I choose only to include open source with free licensing, there are several good paid for tools, but I wanted to display what can be done whatever your budget may be.
+        </p>
+        <p>
+            <h2>transcompilers</h2>
+            transcompiling simply means compiling one source code into another source code
+
+            <h4>CoffeeScript</h4>
+            CoffeeScript is javascript, just simplified. Coffeescript adds several things to javascript in an attempt to make it more productive. It adds style whitespace signifigance, removes the need for syntax that can be infered, and add many idioms to condense traditional javascript. Some people are very opinionated on this subject on if they belive you should use it or not, but you should try it and make your own decisions. With a few exceptions it doesn't force you to not write javascript.
+            There are several ways to build coffeescript, on client side, on server, on build, on save.
+            I don't have an example of CS on this slide, because instead I opted to give all my following code examples in both js and cs for you to compare and contrast.
+
+            <h4>SASS</h4>
+            If you have ever looked at CSS from a programmers point of view like me you probably have noticed several things that it could use to make it a more maintainable and reusable language. This is where SASS comes in to add a programmers touch to stylesheets. It adds variables, math, mixins, and nested css to help with the somtimes overwhelming amount of redundency in stylesheets.
+            You can convert existing CSS today and gradually improve it. CSS is valid SASS.
+            Compiler is written in Ruby
+
+            <h4>LESS</h4>
+            LESS fills the same purpose as SASS with only some variations on the usuage and syntax of some features. LESS compiler is written in javascript, so it can be compiled in the browser or using Node. (.LESS for .net, OSX has LESS app). There may be some rare cases where you may find benefit in prcessing the LESS in the browser but every use case I can think of are negated by the use of CSS media queries.
+        </p>
+        <p>
+            <h2>Core Frameworks</h2>
+
+            These are some smallish frameworks that are not necessarily enough to build your application but are good foundational tools for helping you work with javascript or the DOM.
+
+            <h4>jQuery</h4>
+            When it comes to DOM manipulation jQuery has 'won'. There are many other great tools but jQuery has become ubiquitous and with the amount of community support and variety of plugin's available it's possible to end up costing yourself more time going with a different framework even though it fits your style better.
+            JQuery is built to be highly accessible and so it provide a great entry point for javascript beginners or designers, its focus is to make manipulating the DOM straight forward with chainable syntax.
+
+            <h4>MooTools</h4>
+            MooTools is the only alternative I will mention to jQuery, I choose it because its a good contrast that works to do what jQuery does but tackles it from a different approach. Instead of making the DOM more approachable it works to make javascript at its core more approachable, with helpers for things like prototyple inheritence.
+
+            <h4>Zepto.js</h4>
+            Provides almost all major DOM manipulation of jQuery in less than 1/4 the size of jQuery, however it only supports modern web browsers and doesn't handle animations or effects. Meaning its best used if you know the user's are not using IE, such as mobile... or you can provide a detection switch to fallback to jQuery for IE. Same syntax as jQuery so no code example is really nessesary.
+
+            <h4>Sizzle.js</h4>
+            DOM selector only, used by jQuery internally. Small and good if you only need selector functionallity.
+
+            <h4>Underscore.js</h4>
+            Contains 60+ useful functions to do some otherwise uglier operations in javascript. Most of them deal with manipulating objects in a functional style, inheritence helpers, or providing concise querying mechanisms.
+        </p>
+        <p>
+            <h2>Full Frameworks</h2>
+            <h4>YUI</h4>
+            <h4>SproutCore</h4>
+            <h4>Dojo</h4>
+        </p>
+        <p>
+            <h2>CSS/UI tools</h2>
+            CSS is a requirement for any project, but your resolve is stronger than mine if you stare into a blank css file and don't cringe thinking about all CSS you are going to need to go copy and paste from past projects. 
+
+            <h4>CSS Rests/Normalizer</h4>
+            If you decide not to take help from any CSS frameworks for layout or design. At a minimum you should be looking at a css reset or normalizer. All browsers have default styling for elements, and they are not always the same as another browser this is why your newly styled site may look slightly different from one to another. So a CSS reset such as the popular one from Eric Myer aims to remove all browser specific styling, while helpful it is not maybe the best option. A css normalizer such as normalize.css aims to set the css to some resonable defaults.
+
+            <h4>Compass</h4>
+            Compass is a framework for CSS that utilizes SASS to give you a foundation for of common reusable CSS boiler plate. The compiler is written in Ruby but a Java GUI compiler is available for a few dollars.
+
+            <h4>BlueprintCSS</h4>
+            Blueprint is a set of static CSS files that provide you with some sensible defaults.
+            It includes a reset, typography, grid, IE support, print, and forms CSS files.
+            Its also available as a compass module.
+
+            <h4>Grid960</h4>
+            If you only need a simple grid system, available as either a 12 or 24 column grid layout for your website.
+
+            <h4>Twitter Bootstrap</h4>
+            Published less than a year ago, bootstrap is already the most watched and forked repo on Github. For good reason, its a good resource for getting a new site up and running with most of the basic styling that you always have to do. Includes reset, typography, grid system, tables, forms, buttons, tabs, lists, navbar, pagination, and various other misc styles.
+            It also includes a dozen jquery plugins for some common needs. It uses LESS to compile, so unless you are a find/replace fanatic then using LESS is required to start making custom modifications.
+            --Screenshot examples
+
+            <h4>jQueryUI</h4>
+            jQueryUI is by far one of the most used group of UI controls used on the web. For a good reason, it include a lot of very useful controls and functionality such as modals, datepicker, draggable, sortable, & resizable etc... and additional jQuery animation effects.
+            --Screenshot of controls
+        </p>
+        <p>
+            <h2>Client templating</h2>
+            When you start creating very interactive ajax applications and updating the document you will quickly noticed that manually updating the elements gets very tedious and you wind up coding the UI once on the server and once more clumsily in javascript.
+            The solution to make this less painful is to leverage client side templating and build your html on the client and not on the server.
+
+            <h4>Mustache.js/Hogan.js</h4>
+            Included these together because they are almost identical, they both implement the Mustache templating syntax which is used many other languages as well. The only real difference is that Hogan.js (from Twitter) is capable of being compiled which will make it quicker (provided you actually use the template more than once). The syntax includes block expressions you use to display your data and can also define partial templates
+
+            <h4>Handlebars.js</h4>
+            Handlebars is another templating tool based on the Mustache syntax, but includes some extra features that sometimes helps with more complex views. In addition to the standard Mustache syntax it add some block helpers such as #if, #unless, & #unless, with the ability to register your own block helpers. Handlebars also comes with a precompiler that you can use to turn your html templates into a single or combined javascript files, which makes them sligthly easier to use in your code but saves any compilation time on the client. Precompiling them also allows you to only include the handlebars runtime js file which is much smaller than the version that includes the compiler.
+
+            <h4>Underscore.js Templating</h4>
+            The underscore.js library already mentioned earlier also already includes a simple templating system. Unlike the Mustache syntax it is smaller and more simplistic, it does not provide any helpers and rely's on using all inline javascript for flow control and any logic. As a result the templates read less elegantly and more 'get it done'. If you need some simple templating and are already using underscore anyway then it's templating system is a good choice.
+
+            *Maybe mention in passing jquery templates
+        </p>
+        <p>
+            <h4>MV* client frameworks</h4>
+            For doing simple operations on a page you will find that most frameworks are too heavy and just not needed. But as soon as you start creating complex UI's or even single page apps then you will find not using some sort of framework to organize what you are doing you will endup with a complicated hard to maintain mess. There are a ton of MV* frameworks to help you and this is a great thing because they are usually very opinionated, which means you can get things done as long as you understand the frameworks choices and use it for the appropriate problem.
+
+            <h2>Knockout.js</h2>
+            Knockout is a MVVM framework, that uses two way data-binding between your javacript objects and page elements to keep everything syncronized. It utilizes data-bind attributes on elements to bind them to underlying values. It's a great and effective tool for handling your UI. Since it uses attributes to do the declaritive binding it keeps the javascript fairly straight forward using observable, observableArrays and computed functions to watch underlying values. Using the computed function it will actually track observable dependencies used to compute values and update when needed. Knockout does not however give you any help when it comes to how to organize or structure your code, and it can quickly become a mess without some self discipline.
+
+            <h2>Backbone.js</h2>
+            Backbone is often used to solve similar needs as knockout and is usually compared against it, but a comparison against each other is difficult because they don't actually try to do the same thing. Backbone is not an MVVM framework, it doesn't concern itself with data-binding, it aims instead to give you a foundation for structuring your code into models, collections, and views. It also comes with a router to control your app state based on the URL, it also leans on underscore.js (both written by Jeremy A) for some functionality. Instead of databinding it rely's on and event system to trigger view refreshes when related data changes.
+            --Examples
+
+            <h2>Sammy.js</h2>
+            Sammy is a fairly small tool for controlling single page applications, using events and routes to control the page state. It is a good tool to use with something like knockout which does not provide any means of dealing with in page routing.
+
+            <h2>Spine.js</h2>
+
+            <h2>Ember.js</h2>
+
+            <h2>JavascriptMVC</h2>
+
+            <h2>Batman.js</h2>
+
+            <h2>AngularJS</h2>
+        </p>
+        <p>
+            <h4>testing/dev tools</h4>
+
+            <h2>jsFiddle.net/jsBin.com</h2>
+            These are great testing sites when you need a quick clean environment to test out a bit of sample code. They give you windows display to enter html/css/javascript and view the output.
+
+            <h4>Jasmine</h4>
+            Jasmine is BDD style framework for testing your javascript code, testing javascript is becoming more important the more complex our javascript applications are becoming. The test can be ran from the command line or from the browser, if you are familiar with other BDD frameworks and can write javascript then it's a pretty easy tool to pick up.
+
+            <h4>QUnit</h4>            
+            QUnit is a test framework from the jQuery team, the use it to test the jQuery framework and is fairly popular. It takes more traditional style of TDD testing syntax, so it may be more comfortable for you to use if that is how you prefer to write your tests.
+
+            <h4>Mocha</h4>
+            Mocha is a another testing framework that exposes multiple interfaces for defining its tests, including the BDD style like Jasmine or the TDD style like QUnit. Unlike QUnit and Jasmine however it is designed to work better for async tests if you happen to be writting Node sever code, so you will fill better about using the same testing framework on both fronts.
+
+            <h4>Sinon.js</h4>
+            Sinon is a mocking/stubing/spy framework. It is a javascript counterpart to whatever tool you might be using in your tests for your server language. It is also capable of mocking ajax calls so unit tests can isolate the server from the tests.
+            --Examples
+        </p>
+        <p>
+            <h2>Mobile specific</h2>
+            Depending on your goal, either you will want your site to display well on mobile devices or you want to design a specialized site for mobile devices.
+
+            <h4>CSS Media Queries/Respond.js</h4>
+            If you are looking to just make your current website formated better for different screen sizes, then you should be looking at using responsive media queries to change your styling. If you need to target browsers that don't support them (IE8) then you can look at using a polyfill such as repond.js to implement the functionallity.
+            --Example of responsive query
+
+            <h4>jQueryUI Touch Punch/hammer.js</h4>
+            Touch Punch is a simple script you can include, that will remap the drag and touch events correctly so that the UI widgets will respond correctly on touch devices.
+            Hammer is small script to give you access to respond to touch events with custom actions.
+            --Code examples
+
+            <h4>jQuery Mobile</h4>
+            jQuery Mobile is a framework that aimed instead of reworking your existing site, but providing a seperate mobile website with a native app feeling for the specific device with more complete touch support then a standard website.
+            --Screenshot example
+
+            <h4>Dojo Mobile</h4>
+            Dojo Mobile fills the same niche as jQuery mobile, they are very close in functionality to each other. If you are a jQuery user I would probably stick to using jQuery mobile if not and you are a fan of using the Dojo desktop framework (similiar to jQuery but I didn't touch on it) then I would go with Dojo Mobile. Dojo has a few more fancy controls but jQuery has more commonly useful controls and in my opinion has a more polished look to them.
+        </p>
+        <p>
+            <h4>Misc</h4>
+            cool and somtimes more specialized tools
+
+            <h4>Modernizr/YepNope</h4>
+            Moderinzr is used to detect browser features so that you can provide fallback alternatives for missing functionality. It also provides HTML5 shims for IE so that older IE's are able to apply styling to the HTML5 elements. Modernizr is basically a collection of feature detection scripts that also includes the YepNope library for conditionally loading the required scripts. The YepNope library can be used independently. Modernizr's Github wiki has a page with a list of polyfills to help filling missing feature gaps if you need one.
+            --Detection Example
+
+            <h4>LABjs</h4>
+            LABjs is a script loader used to replace your script tags. Using a script loader can dramatically improve your page loading performance, expecially in older browsers that still do serial javascript loading. This is an easy tool to use in any existing site you have without any other changes.
+            --Example
+
+            <h4>Require.js</h4>
+            Require is a script module loader, 
+
+            <h4>Raphael.js</h4>
+            Raphael is a library for creating vector graphics in the browser. You can fairly easily create graphics, animations and really anything you can think of to do with vector graphics.
+            --Logo Demo
+
+            <h4>Google charts/d3.js/gRaphael</h4>
+            These are all solutions for rendering graphs and carts in the browser, all using either SVG or VML to render in the browser. gRaphael depends on the Raphael library, Google charts is the easiest to use for simple charts but d3 has some interesting possibilities with its more flexible API.
+            --Screenshot of chart examples
+
+            <h4>Google fonts</h4>
+            This isn't really a framework or library, but a great online resource for free fonts. Currently over 500 free font family's that require just require a single line to bring into your project.
+
+            <h4>DocumentJS/Docco</h4>
+            I have wrote some less than pristine javascript in my time, mere mortal's usually do. A lot of languages have some semantics on commenting code for documentation reasons, javascript really doesn't. DocumentJS and Docco both takes your structured comments and creates annotated source code documentation.
+            --Screenshot of annotated source
+
+            <h4>Impress.js</h4>
+            At this point Impress doesn't require much explination, its a library for creating presentations in the browser and it's what this whole presentation is in.
+
+            <h4>Heatmap.js</h4>
+            If you want to help gather some information on how users are using your site, Heatmap is a tool that can track the users mouse actions and allows you to overlay a HTML5 canvast on the page to glean information on what the users are focusing on.
+            --Code example, screenshot of heatmap
+
+        </p>
+    </body>
+</html>
